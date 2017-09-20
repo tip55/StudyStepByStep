@@ -1,12 +1,10 @@
-本地仓库--[对应于]--远程仓库
-都是在操作git本地仓库，将最终的结果推送同步到远程仓库
-操作本地仓库时一般是基于当前所处的分支的
-
+都是先基于本地所处分支进行相关操作，然后将最终的结果推送同步到远程仓库
+<br>
 origin均代表远程仓库，比如origin/master或origin:master表示远程仓库的master分支
-
-
+<br>
 
 1.本地计算机初始化相关操作
+------
 设置Git的username和email：
 $ git config --global user.name "yangshuhua"
 $ git config --global user.email "yangshuhua@gmail.com"
@@ -16,6 +14,7 @@ $ ssh-keygen -t rsa -C "yangshuhua@gmail.com"
 
 
 2.分支操作
+------
 $ git branch    查看本地分支
 $ git branch -r    查看远程分支
 $ git branch xxx    创建本地分支,注意不会自动切换到新分支上
@@ -25,9 +24,9 @@ $ git branch -d xxx    删除分支，-d选项无法删除仍有未合并内容�
 $ git merge xxx    合并分支，将名称为xxx的分支与当前分支合并
 注：如果想要合并分支，那么要合并的分支必须比当前分支的版本先进
 $ git push origin :heads/xxx    删除远程分支
-$ git push origin master ---将本地所在分支内容推送到远程master分支上，若远程master分支不存在，则会新建远程master分支；
-$ git push origin dev:master ---不关心当前所在分支，只会把本地dev分支推送到远程的master分支，若远程master分支不存在，则会新建远程master分支；
-注意：$ git push origin :test --表示删除远程名称为test的分支
+$ git push origin master    将本地所在分支内容推送到远程master分支上，若远程master分支不存在，则会新建远程master分支；
+$ git push origin dev:master    不关心当前所在分支，只会把本地dev分支推送到远程的master分支，若远程master分支不存在，则会新建远程master分支；
+注意：$ git push origin :test    表示删除远程名称为test的分支
 
 
 3.版本（Tag）操作
@@ -37,7 +36,7 @@ $ git tag -d xxx    删除版本
 $ git push origin :refs/tags/xxx    删除远程版本
 $ git push origin xxx    将本地Tag推送到远程仓库，新建远程Tag
 $ git push origin xxx:other_name    将本地Tag推送到远程仓库，并修改远程Tag名字
-注意：$ git push origin :other_name --表示删除远程名称为other_name的Tag
+注意：$ git push origin :other_name    表示删除远程名称为other_name的Tag
 
 4.忽略
 在仓库根目录下创建名称为".gitignore"的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如:
@@ -65,28 +64,28 @@ $ git log    查看历史提交版本记录，--pretty=oneline参数可以屏蔽
 注：每台机器checkout时，均会把所有以往的历史提交记录也会check下来
 $ git reset --hard version    回退到指定版本
 $ git push -f origin master    -f参数表示强制覆盖远程,一般情况下切不可使用该参数
---------第二种方式---------
+``````第二种方式``````
 在Git中，用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
 $ git log --pretty=oneline
-    50bd7fa1de128b29eeef55be1a086c5550bfcd14 111111111111111
-	30bd7fa1de128b29eeef55be1a086c5550bfcd14 222222222222222
-	20bd7fa1de128b29eeef55be1a086c5550bfcd14 333333333333333
-	10bd7fa1de128b29eeef55be1a086c5550bfcd14 444444444444444
-	   ... ...
+> 50bd7fa1de128b29eeef55be1a086c5550bfcd14 111111111111111
+> 30bd7fa1de128b29eeef55be1a086c5550bfcd14 222222222222222
+> 20bd7fa1de128b29eeef55be1a086c5550bfcd14 333333333333333
+> 10bd7fa1de128b29eeef55be1a086c5550bfcd14 444444444444444
+>     ... ...
 $ git reset --hard HEAD^
 or
 $ git reset --hard HEAD~1
 $ git log --pretty=oneline
-    30bd7fa1de128b29eeef55be1a086c5550bfcd14 222222222222222
-	20bd7fa1de128b29eeef55be1a086c5550bfcd14 333333333333333
-	10bd7fa1de128b29eeef55be1a086c5550bfcd14 444444444444444
-	   ... ...
-----------代码回退后怎么还原-----------------
+> 30bd7fa1de128b29eeef55be1a086c5550bfcd14 222222222222222
+> 20bd7fa1de128b29eeef55be1a086c5550bfcd14 333333333333333
+> 10bd7fa1de128b29eeef55be1a086c5550bfcd14 444444444444444
+>     ... ...
+``````代码回退后怎么还原``````
 $ git reflog  查看到提交记录ID
-	dae675a HEAD@{0}: reset: moving to HEAD^  
-	8e27eb6 HEAD@{1}: commit: append GPL  
-	dae675a HEAD@{2}: commit: add distributed  
-	c412f7e HEAD@{3}: commit (initial): wrote a readme file
+> dae675a HEAD@{0}: reset: moving to HEAD^  
+> 8e27eb6 HEAD@{1}: commit: append GPL  
+> dae675a HEAD@{2}: commit: add distributed  
+> c412f7e HEAD@{3}: commit (initial): wrote a readme file
 可看到reset操作前的最后一次提交记录ID为8e27eb6
 注：$ git reflog | grep merge  根据关键字搜索提交记录
 $ git reset --hard 8e27eb6
@@ -95,11 +94,11 @@ $ git push -f origin master
 
 9.非版本回退的还原
 $ git log --pretty=oneline
-	50bd7fa1de128b29eeef55be1a086c5550bfcd14 111111111111111
-	30bd7fa1de128b29eeef55be1a086c5550bfcd14 222222222222222
-	20bd7fa1de128b29eeef55be1a086c5550bfcd14 333333333333333
-	10bd7fa1de128b29eeef55be1a086c5550bfcd14 444444444444444
-	   ... ...
+> 50bd7fa1de128b29eeef55be1a086c5550bfcd14 111111111111111
+> 30bd7fa1de128b29eeef55be1a086c5550bfcd14 222222222222222
+> 20bd7fa1de128b29eeef55be1a086c5550bfcd14 333333333333333
+> 10bd7fa1de128b29eeef55be1a086c5550bfcd14 444444444444444
+>     ... ...
 $ git revert xxxx33    出现vim的编辑状态，主要是为本次提交添加注释，操作和vim一样，:wq保存退出
 $ git push origin master
 
@@ -108,6 +107,7 @@ $ git push origin master
 
 
 10. 拉取代码时冲突后解决方法
+------
 $ git stash  将本地git仓库已提交文件存档
 $ git diff HEAD  查看当前工作区和版本库区别, 此时什么都没有输出，说明工作区被重置为HEAD指向内容了
 $ git pull 拉取代码
@@ -118,7 +118,7 @@ $ git status查看状态
 
 
 11.替换
---------------------------
+------
 $ git reset --hard origin/master    将本地当前所在分支的HEAD指向远程仓库的master分支
 $ git reset --hard develop    使用本地的develop分支替换覆盖本地当前所处的分支
---------------------------
+``````temp``````
