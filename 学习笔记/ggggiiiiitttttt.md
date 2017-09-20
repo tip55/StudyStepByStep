@@ -21,7 +21,7 @@ $ git branch -d xxx    删除分支，-d选项无法删除仍有未合并内容�
 $ git merge xxx    合并分支，将名称为xxx的分支与当前分支合并
 注：如果想要合并分支，那么要合并的分支必须比当前分支的版本先进
 $ git push origin :heads/xxx    删除远程分支
-$ git push origin master ---不关心当前所在分支，只会把本地master分支推送到对应的远程master分支，若远程master分支不存在，则会新建远程master分支；
+$ git push origin master ---将本地所在分支内容推送到远程master分支上，若远程master分支不存在，则会新建远程master分支；
 $ git push origin dev:master ---不关心当前所在分支，只会把本地dev分支推送到远程的master分支，若远程master分支不存在，则会新建远程master分支；
 注意：$ git push origin :test --表示删除远程名称为test的分支
 
