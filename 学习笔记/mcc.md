@@ -29,5 +29,29 @@ http://unetbootin.github.io/
 http://www.onlinedown.net/soft/88566.htm
 
 
+UEFI+GPT
+>> 预备知识
+1. UEFI全称“统一的可扩展固件接口”(Unified Extensible Firmware Interface),优于传统的legacy BIOS。
+2. GPT 是一种全新的磁盘分区表，可以弥补MBR的诸多不足。
+3. 因为NTFS不能进行UEFI引导启动win7安装程序，所以必须是用U盘，而且要求格式化成FAT32。
 
+>> 准备工作
+1. 下载win7 64位的纯净版镜像IOS文件，而不是常用的ghost文件，因为我们需要对镜像文件进行修改。
+2. 准备一个U盘，容量不小于4G。
 
+>> 制作过程
+1. 解压之前下载的镜像文件，如下所示：
+boot
+efi
+sources
+support
+upgrade
+autorun.inf
+bootmgr
+bootmgr.efi
+setup.exe
+因为纯净的win7的安装镜像并不支持UEFI启动，所以我们需要稍做修改。
+从一台已经安装了win7 x64系统的电脑上提取启动文件——C:\Windows\Boot\EFI\bootmgr.efi 。在解压后的镜像文件夹找到“efi”文件夹，在其目录下新建一个名为“boot”，将提取的“bootmgr.efi”文件拷贝至“boot”目录下，并重命名为“bootX64.efi”。
+2.制作U盘启动盘
+
+http://www.xitongcheng.com/jiaocheng/xtazjc_article_33913.html
