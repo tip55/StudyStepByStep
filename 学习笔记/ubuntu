@@ -5,3 +5,12 @@ Python3是被默认安装带usr/local/lib/python3.2目录中：
 sudo cp /usr/bin/python /usr/bin/python_bak  # 备份原始python链接文件
 sudo rm -f /usr/bin/python    # 删除原始python链接文件
 sudo ln -s /usr/bin/python3.2 /usr/bin/python    # 建立新的连接关系 
+2.安装jdk
+sudo tar -zxvf ~/下载/jdk-8u144-linux-x64.tar.gz -C /usr/local/lib/
+vim /etc/profile
+
+export JAVA_HOME=/usr/local/lib/jdk1.8.0_144
+export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+
+3.安装intellij idea
