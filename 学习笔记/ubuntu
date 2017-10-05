@@ -9,6 +9,7 @@ sudo ln -s /usr/bin/python3.2 /usr/bin/python    # 建立新的连接关系
 安装pip3：
 sudo apt-get install python3-pip
 pip3 install packagename
+pip3 freeze / pip3 list 可以查看已经安装的python软件包和版本
 
 创建python3的虚拟环境:
 virtualenv -p /usr/bin/python3 环境名称
