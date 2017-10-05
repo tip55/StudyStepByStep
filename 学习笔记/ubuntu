@@ -5,6 +5,17 @@ Python3是被默认安装带usr/local/lib/python3.2目录中：
 sudo cp /usr/bin/python /usr/bin/python_bak  # 备份原始python链接文件
 sudo rm -f /usr/bin/python    # 删除原始python链接文件
 sudo ln -s /usr/bin/python3.2 /usr/bin/python    # 建立新的连接关系 
+
+安装pip3：
+sudo apt-get install python3-pip
+pip3 install packagename
+
+创建python3的虚拟环境:
+virtualenv -p /usr/bin/python3 环境名称
+或者
+virtualenv -p python3 环境名称
+
+
 2.安装jdk
 sudo tar -zxvf ~/下载/jdk-8u144-linux-x64.tar.gz -C /usr/local/lib/
 vim /etc/profile
