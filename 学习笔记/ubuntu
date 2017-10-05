@@ -10,11 +10,20 @@ sudo tar -zxvf ~/下载/jdk-8u144-linux-x64.tar.gz -C /usr/local/lib/
 vim /etc/profile
 
 export JAVA_HOME=/usr/local/lib/jdk1.8.0_144
-export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$CLASSPATH
-export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 
 
 source /etc/profile
 
 
 3.安装intellij idea
+下载地址：https://www.jetbrains.com/idea/download/#section=linux
+选择Ultimate的Linux, without JDK (.tar.gz)版本下载
+
+sudo tar -zxvf ~/下载/ideaIU-2017.2.5-no-jdk.tar.gz -C /opt/
+cd /opt/idea-IU-172.4343.14/bin/
+./idea.sh 是IDEA的启动文件
+IDEA快捷图标设置:
+
