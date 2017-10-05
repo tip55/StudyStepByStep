@@ -26,4 +26,18 @@ sudo tar -zxvf ~/下载/ideaIU-2017.2.5-no-jdk.tar.gz -C /opt/
 cd /opt/idea-IU-172.4343.14/bin/
 ./idea.sh 是IDEA的启动文件
 IDEA快捷图标设置:
+sudo vim /usr/share/applications/intellij-idea.desktop
+
+[Desktop Entry]
+Name=IntelliJ IDEA
+Exec=/opt/idea-IU-172.4343.14/bin/idea.sh
+Comment=IntelliJ IDEA
+Icon=/opt/idea-IU-172.4343.14/bin/idea.png
+Type=Application
+Terminal=false
+Encoding=UTF-8
+
+
+sudo chmod +x /usr/share/applications/intellij-idea.desktop
+
 
