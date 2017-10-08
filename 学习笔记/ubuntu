@@ -64,7 +64,7 @@ sudo apt-get install mysql-client
 service mysql start
 sudo netstat -tap | grep mysql
 service mysql stop
-mysql -uroot -h 192.168.8.88 -proot
+mysql -h 127.0.0.1 -P 3306 -uroot -proot
 a.修改character_set_server为utf-8
 show variables like "char%";
 sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
