@@ -1,3 +1,19 @@
+3.安装Redis
+sudo apt-get install redis-server
+ps -aux | grep redis   ## 检查Redis服务进程
+netstat -nlt | grep 6379   ##检查Redis服务状态
+
+redis-cli -h 192.168.1.103 -p 6379 -a test
+
+
+2.pip
+a.安装mysqlclient
+## sudo apt-get install libmysql-dev
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install python-dev
+sudo pip install mysqlclient
+
+
 1.安装python3
 sudo apt-get install python3
 因为Ubuntu很多底层采用的是Python2.*，Python3和Python2是互相不兼容的，所以此时不能卸载Python2，需要将默认Python的指向Python3。 
