@@ -61,4 +61,7 @@ sudo chmod +x /usr/share/applications/intellij-idea.desktop
 sudo apt-get install mysql-server
 sudo apt-get install mysql-client
 
+service mysql start
+sudo netstat -tap | grep mysql
+service mysql stop
 mysql -uroot -h 192.168.8.88 -proot
