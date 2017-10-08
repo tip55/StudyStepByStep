@@ -14,9 +14,11 @@ pip3 install "requests>2.0,<3.0"        #(2.0,3.0)之间的最新版本
 pip3 freeze / pip3 list 可以查看已经安装的python软件包和版本
 
 创建python3的虚拟环境:
-virtualenv -p /usr/bin/python3 环境名称
-或者
-virtualenv -p python3 环境名称
+pip3 install virtualenv
+# 创建 python3 虚拟环境
+virtualenv -p /usr/bin/python3 webspider
+# 激活虚拟环境
+source webspider/bin/activate
 
 
 2.安装jdk
