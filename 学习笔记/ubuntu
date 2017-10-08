@@ -65,3 +65,8 @@ service mysql start
 sudo netstat -tap | grep mysql
 service mysql stop
 mysql -uroot -h 192.168.8.88 -proot
+a.修改character_set_server为utf-8
+show variables like "char%";
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+在[mysqld]下添加一行character_set_server=utf8
+service mysql restart
