@@ -57,3 +57,8 @@ Encoding=UTF-8
 sudo chmod +x /usr/share/applications/intellij-idea.desktop
 
 
+4.安装mysql相关
+sudo apt-get install mysql-server
+sudo apt-get install mysql-client
+
+mysql -uroot -h 192.168.8.88 -proot
