@@ -70,3 +70,9 @@ show variables like "char%";
 sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
 在[mysqld]下添加一行character_set_server=utf8
 service mysql restart
+
+b.完全卸载mysql
+sudo apt-get autoremove mysql* --purge
+sudo apt-get remove apparmor  
+sudo rm -R /var/lib/mysql/
+sudo rm -R /etc/mysql/
