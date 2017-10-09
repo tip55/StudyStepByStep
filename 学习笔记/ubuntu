@@ -1,0 +1,100 @@
+3.安装Redis
+sudo apt-get install redis-server
+ps -aux | grep redis   ## 检查Redis服务进程
+netstat -nlt | grep 6379   ##检查Redis服务状态
+
+redis-cli -h 192.168.1.103 -p 6379 -a test
+
+
+2.pip
+a.安装mysqlclient
+## sudo apt-get install libmysql-dev
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install python-dev
+sudo pip install mysqlclient
+
+
+1.安装python3
+sudo apt-get install python3
+因为Ubuntu很多底层采用的是Python2.*，Python3和Python2是互相不兼容的，所以此时不能卸载Python2，需要将默认Python的指向Python3。 
+Python3是被默认安装带usr/local/lib/python3.2目录中：
+sudo cp /usr/bin/python /usr/bin/python_bak  # 备份原始python链接文件
+sudo rm -f /usr/bin/python    # 删除原始python链接文件
+sudo ln -s /usr/bin/python3.2 /usr/bin/python    # 建立新的连接关系 
+
+安装pip3：
+sudo apt-get install python3-pip
+pip3 install cchardet                    #不指定版本号，安装可用的最新版本
+pip3 install "requests==2.7"            #指定版本号2.7
+pip3 install "requests>2.0,<3.0"        #(2.0,3.0)之间的最新版本
+pip3 freeze / pip3 list 可以查看已经安装的python软件包和版本
+
+创建python3的虚拟环境:
+pip3 install virtualenv
+# 创建 python3 虚拟环境
+virtualenv -p /usr/bin/python3 webspider
+# 激活虚拟环境
+source webspider/bin/activate
+
+
+2.安装jdk
+sudo tar -zxvf ~/下载/jdk-8u144-linux-x64.tar.gz -C /usr/local/lib/
+vim /etc/profile
+
+export JAVA_HOME=/usr/local/lib/jdk1.8.0_144
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+
+
+source /etc/profile
+
+
+3.安装intellij idea
+下载地址：https://www.jetbrains.com/idea/download/#section=linux
+选择Ultimate的Linux, without JDK (.tar.gz)版本下载
+
+sudo tar -zxvf ~/下载/ideaIU-2017.2.5-no-jdk.tar.gz -C /opt/
+cd /opt/idea-IU-172.4343.14/bin/
+./idea.sh 是IDEA的启动文件
+IDEA快捷图标设置:
+sudo vim /usr/share/applications/intellij-idea.desktop
+
+[Desktop Entry]
+Name=IntelliJ IDEA
+Exec=/opt/idea-IU-172.4343.14/bin/idea.sh
+Comment=IntelliJ IDEA
+Icon=/opt/idea-IU-172.4343.14/bin/idea.png
+Type=Application
+Terminal=false
+Encoding=UTF-8
+
+
+sudo chmod +x /usr/share/applications/intellij-idea.desktop
+
+
+4.安装mysql相关
+sudo apt-get install mysql-server
+sudo apt-get install mysql-client
+
+service mysql start
+sudo netstat -tap | grep mysql
+service mysql stop
+mysql -h 127.0.0.1 -P 3306 -uroot -proot
+a.修改character_set_server为utf-8
+show variables like "char%";
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+在[mysqld]下添加一行character_set_server=utf8
+service mysql restart
+
+b.完全卸载mysql
+sudo apt-get autoremove mysql* --purge
+sudo apt-get remove apparmor  
+sudo rm -R /var/lib/mysql/
+sudo rm -R /etc/mysql/
+
+c.配置远程访问
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf  将bind-address = 127.0.0.1注释
+修改用户权限:grant all on *.* to root@'%' identified by '123';   ## 添加一个用户名是root且密码是123的远程访问用户
+刷新：flush privileges;
+查看是否添加成功：select user,host,authentication_string from user;
