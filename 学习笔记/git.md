@@ -129,3 +129,8 @@ $ git status查看状态
 $ git reset --hard origin/master    将本地当前所在分支的HEAD指向远程仓库的master分支
 $ git reset --hard develop    使用本地的develop分支替换覆盖本地当前所处的分支
 ``````temp``````
+
+
+12.pull
+Please specify which branch you want to merge with.
+git pull push没有指定branch报错的解决方法:git pull origin develop   #指定远程分支

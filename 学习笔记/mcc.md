@@ -55,3 +55,8 @@ setup.exe
 2.制作U盘启动盘
 
 http://www.xitongcheng.com/jiaocheng/xtazjc_article_33913.html
+
+
+北京DNS最快：
+202.106.196.115    202.106.0.20
+114.114.114.114    114.114.115.115
