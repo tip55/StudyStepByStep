@@ -60,3 +60,6 @@ http://www.xitongcheng.com/jiaocheng/xtazjc_article_33913.html
 北京DNS最快：
 202.106.196.115    202.106.0.20
 114.114.114.114    114.114.115.115
+
+将jar包安装到MAVEN本地仓库
+mvn install:install-file -Dfile=D:\openapi-1.0-SNAPSHOT.jar -DgroupId=com.xiaoying -DartifactId=openapi -Dversion=1.0-SNAPSHOT -Dpackaging=jar
