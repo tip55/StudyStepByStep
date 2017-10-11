@@ -4,6 +4,17 @@ http://www.lfd.uci.edu/~gohlke/pythonlibs/
 
 https://segmentfault.com/a/1190000007031057
 
+2.概念
+a.实例变量data
+class Kls(object):
+    def __init__(self, data):
+        self.data = data
+b.类变量data
+class Kls(object):
+    data = 0
+    def __init__(self, data):
+        self.data = data
+
 1.虚拟环境
 所有第三方的包都会被pip安装到Python3的site-packages目录下
 如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python,如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？
