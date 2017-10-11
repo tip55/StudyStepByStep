@@ -14,6 +14,53 @@ class Kls(object):
     data = 0
     def __init__(self, data):
         self.data = data
+c.静态变量
+IND = 'ON'
+class Kls(object):
+    def __init__(self, data):
+        self.data = data
+
+
+a.构造方法(第一个参数是self，即对象本身)
+class Kls(object):
+    def __init__(self, data):
+        self.data = data
+调用：ik1 = Kls('arun')，不需要传self参数，Python解释器自己会做这些操作的
+b.实例方法，即instance method(第一个参数为self，即对象本身)
+class Kls(object):
+    def __init__(self, data):
+        self.data = data
+    def printd(self):
+        print(self.data)
+调用：ik1 = Kls('arun')   ik1.printd()，不需要传对象self参数，Python解释器自己会做这些操作的。
+c.类方法，class method
+仅仅与类交互而不牵扯和实例交互
+class Kls(object):
+    no_inst = 0
+    def __init__(self):
+        Kls.no_inst = Kls.no_inst + 1
+    @classmethod
+    def get_no_of_instance(cls_obj):
+        return cls_obj.no_inst
+调用：Kls.get_no_of_instance()
+d.静态方法，static method
+有一些跟类有关（比如，该类方法或实例方法需要的方法），但运行时不依赖类和实例
+IND = 'ON'
+class Kls(object):
+    def __init__(self, data):
+        self.data = data
+    @staticmethod
+    def checkind():
+        return (IND == 'ON')
+    def do_reset(self):
+        if self.checkind():
+            print('Reset done for:', self.data)
+调用：
+e.其他方法
+随便写的。
+
+
+注：各种类型的方法Python解释器传入的第一个参数不同。
 
 1.虚拟环境
 所有第三方的包都会被pip安装到Python3的site-packages目录下
