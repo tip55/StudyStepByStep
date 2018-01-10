@@ -1,41 +1,100 @@
 1.vue-router >>>>> keep-alive
-### router.meta 拓展
-假设这里有 3 个路由： A、B、C。
-需求：默认显示 A/B 跳到 A，A 不刷新/C 跳到 A，A 刷新
-实现方式:
-在 A 路由里面设置 meta 属性：
+入口修改：
+<keep-alive>
+    <router-view v-if="$route.meta.keepAlive">
+        <!-- 这里是会被缓存的视图组件，比如 page1,page2 -->
+    </router-view>
+</keep-alive>
+<router-view v-if="!$route.meta.keepAlive">
+    <!-- 这里是不被缓存的视图组件，比如 page3 -->
+</router-view>
+router/index.js修改：
+routes: [{
+        path: '/',
+        name: 'index',
+        component: index,
+        meta: {
+            keepAlive: false, //此组件不需要被缓存
+        }
+    },
+    {
+        path: '/page1',
+        name: 'page1',
+        component: page1,
+        meta: {
+            keepAlive: true, //此组件需要被缓存
+            
+        }
+    },
+    {
+        path: '/page2',
+        name: 'page2',
+        component: page2,
+        meta: {
+            keepAlive: true, // 此组件需要被缓存
+           
+        }
+    },
+    {
+        path: '/page3',
+        name: 'page3',
+        component: page3,
+        meta: {
+            keepAlive: false, // 此组件不需要被缓存
+        }
+    }
+]
+>>> 不使用keep-alive钩子函数的执行顺序：beforeRouteEnter --> created --> mounted --> destroyed
+>>> 使用keep-alive钩子函数的执行顺序：beforeRouteEnter --> created --> mounted --> activated --> deactivated
+再次进入缓存的页面，只会触发beforeRouteEnter -->activated --> deactivated 。created和mounted不会再执行。
+其中activated和deactivated是使用keep-alive后，vue中比较重要的两个钩子函数。
+###  router.meta拓展
 {
-  path: '/',
-  name: 'A',
-  component: A,
-  meta: {
-    keepAlive: true // 需要被缓存
-  }
-}
-在 B 组件里面设置 beforeRouteLeave：
-export default {
-  data() {
-    return {};
-  },
-  methods: {},
-  beforeRouteLeave(to, from, next) {
-    // 设置下一个路由的 meta
-    to.meta.keepAlive = true; // 让 A 缓存，即不刷新
-    next();
-  }
-}
-在 C 组件里面设置 beforeRouteLeave：
-export default {
-  data() {
-    return {};
-  },
-  methods: {},
-    beforeRouteLeave(to, from, next) {
-    // 设置下一个路由的 meta
-    to.meta.keepAlive = false; // 让 A 不缓存，即刷新
-    next();
-  }
+    path: '/page1',
+    name: 'page1',
+    component: page1,
+    meta: {
+        keepAlive: true, //此组件需要被缓存
+        isBack:false, //用于判断上一个页面是哪个
+    }
+},
+{
+    path: '/page2',
+    name: 'page2',
+    component: page2,
+    meta: {
+        keepAlive: true, // 此组件需要被缓存
+        isBack:false, //用于判断上一个页面是哪个
+    }
 }
 
-这样便能实现 B 回到 A，A 不刷新；而 C 回到 A 则刷新。
+beforeRouteEnter(to, from, next) {
+  // 路由导航钩子，此时还不能获取组件实例 `this`，所以无法在data中定义变量（利用vm除外）
+  if(from.name=='page2'){
+      to.meta.isBack=true;
+      //判断是从哪个路由过来的，
+      //如果是page2过来的，表明当前页面不需要刷新获取新数据，直接用之前缓存的数据即可
+  }
+  next();
+}
+
+activated() {
+  if(!this.$route.meta.isBack){
+    // 如果isBack是false，表明需要获取新数据，否则就不再请求，直接使用缓存的数据
+    this.getData();
+  }
+  // 恢复成默认的false，避免isBack一直是true，导致下次无法获取数据
+  this.$route.meta.isBack=false
+}
+附加：
+beforeRouteEnter(to, from, next) {
+  next(vm => {
+    vm.$store.commit('showHeader');
+    vm.get();
+  })
+}
+
+
+
+
 
