@@ -1,0 +1,41 @@
+1.vue-router >>>>> keep-alive
+### router.meta 拓展
+假设这里有 3 个路由： A、B、C。
+需求：默认显示 A/B 跳到 A，A 不刷新/C 跳到 A，A 刷新
+实现方式:
+在 A 路由里面设置 meta 属性：
+{
+  path: '/',
+  name: 'A',
+  component: A,
+  meta: {
+    keepAlive: true // 需要被缓存
+  }
+}
+在 B 组件里面设置 beforeRouteLeave：
+export default {
+  data() {
+    return {};
+  },
+  methods: {},
+  beforeRouteLeave(to, from, next) {
+    // 设置下一个路由的 meta
+    to.meta.keepAlive = true; // 让 A 缓存，即不刷新
+    next();
+  }
+}
+在 C 组件里面设置 beforeRouteLeave：
+export default {
+  data() {
+    return {};
+  },
+  methods: {},
+    beforeRouteLeave(to, from, next) {
+    // 设置下一个路由的 meta
+    to.meta.keepAlive = false; // 让 A 不缓存，即刷新
+    next();
+  }
+}
+
+这样便能实现 B 回到 A，A 不刷新；而 C 回到 A 则刷新。
+
