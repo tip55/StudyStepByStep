@@ -23,8 +23,14 @@ sudo apt-get upgrade 更新软件
 修改dns：
 /etc/resolv.conf
 nameserver 8.8.8.8
-
-
+上述方法会在重启后被清除，导致再次开机时需要重新配置
+直接卸载掉开机重写该文件的 resolvconf:
+sudo apt-get autoremove resolvconf
+如果仍需要使用 resolvconf ，则可在卸载后，对 /etc/resolv.conf 加锁后再重新安装该软件
+# 文件加锁 不可写
+sudo chattr +i /etc/resolv.conf  
+# 文件解锁 可写
+sudo chattr -i /etc/resolv.conf
 
 4.常见问题
 dpkg安装软件出错：
