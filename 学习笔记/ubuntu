@@ -1,5 +1,28 @@
 http://blog.csdn.net/iamplane/article/details/70447517
 
+5.换源
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+##测试版源
+deb http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
+# 源码
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+##测试版源
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
+# Canonical 合作伙伴和附加
+deb http://archive.canonical.com/ubuntu/ xenial partner
+deb http://extras.ubuntu.com/ubuntu/ xenial main
+
+sudo apt-get update 更新源  
+sudo apt-get upgrade 更新软件
+
+
+
 4.常见问题
 dpkg安装软件出错：
 出现   dpkg: 处理软件包 gir1.2-unity-5.0:amd64 (--configure)时出错：   字样
