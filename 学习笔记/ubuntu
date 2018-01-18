@@ -1,7 +1,8 @@
 
 5.换源
 ------------------修改DNS------------------------
-
+重启网络:
+sudo /etc/init.d/networking restart
 ------------------修改源------------------------
 deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
