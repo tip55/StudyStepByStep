@@ -34,6 +34,44 @@ sudo dpkg -i sogoupinyin_2.2.0.0102_amd64.deb
 若缺少依赖包，执行:sudo apt-get install -f
 
 
+------------------安装python3------------------------
+sudo apt-get install python3
+or
+sudo apt-get install python3.5
+因为Ubuntu很多底层采用的是Python2.*，Python3和Python2是互相不兼容的，所以此时不能卸载Python2，需要将默认Python的指向Python3。 
+Python3是被默认安装带usr/local/lib/python3.2目录中：
+sudo cp /usr/bin/python /usr/bin/python_bak  # 备份原始python链接文件
+sudo rm -f /usr/bin/python    # 删除原始python链接文件
+sudo ln -s /usr/bin/python3.2 /usr/bin/python    # 建立新的连接关系 
+
+安装pip3：
+sudo apt-get install python3-pip
+pip3 install cchardet                    #不指定版本号，安装可用的最新版本
+pip3 install "requests==2.7"            #指定版本号2.7
+pip3 install "requests>2.0,<3.0"        #(2.0,3.0)之间的最新版本
+pip3 freeze / pip3 list 可以查看已经安装的python软件包和版本
+
+创建python3的虚拟环境:
+pip3 install virtualenv
+# 创建 python3 虚拟环境
+virtualenv -p /usr/bin/python3 webspider
+# 激活虚拟环境
+source webspider/bin/activate
+
+------------------安装jdk------------------------
+sudo tar -zxvf ~/下载/jdk-8u144-linux-x64.tar.gz -C /usr/local/lib/
+vim /etc/profile
+
+export JAVA_HOME=/usr/local/lib/jdk1.8.0_144
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+
+
+source /etc/profile
+
+
+
 4.常见问题
 dpkg安装软件出错：
 出现   dpkg: 处理软件包 gir1.2-unity-5.0:amd64 (--configure)时出错：   字样
@@ -66,44 +104,6 @@ a.安装mysqlclient
 sudo apt-get install libmysqlclient-dev
 sudo apt-get install python-dev
 sudo pip install mysqlclient
-
-
-1.安装python3
-sudo apt-get install python3
-or
-sudo apt-get install python3.5
-因为Ubuntu很多底层采用的是Python2.*，Python3和Python2是互相不兼容的，所以此时不能卸载Python2，需要将默认Python的指向Python3。 
-Python3是被默认安装带usr/local/lib/python3.2目录中：
-sudo cp /usr/bin/python /usr/bin/python_bak  # 备份原始python链接文件
-sudo rm -f /usr/bin/python    # 删除原始python链接文件
-sudo ln -s /usr/bin/python3.2 /usr/bin/python    # 建立新的连接关系 
-
-安装pip3：
-sudo apt-get install python3-pip
-pip3 install cchardet                    #不指定版本号，安装可用的最新版本
-pip3 install "requests==2.7"            #指定版本号2.7
-pip3 install "requests>2.0,<3.0"        #(2.0,3.0)之间的最新版本
-pip3 freeze / pip3 list 可以查看已经安装的python软件包和版本
-
-创建python3的虚拟环境:
-pip3 install virtualenv
-# 创建 python3 虚拟环境
-virtualenv -p /usr/bin/python3 webspider
-# 激活虚拟环境
-source webspider/bin/activate
-
-
-2.安装jdk
-sudo tar -zxvf ~/下载/jdk-8u144-linux-x64.tar.gz -C /usr/local/lib/
-vim /etc/profile
-
-export JAVA_HOME=/usr/local/lib/jdk1.8.0_144
-export JRE_HOME=$JAVA_HOME/jre
-export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
-export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
-
-
-source /etc/profile
 
 
 3.安装intellij idea
