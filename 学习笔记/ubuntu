@@ -2,8 +2,11 @@
 5.换源
 ------------------修改DNS------------------------
 重启网络:
+系统设置--网络--点击无线网络名字最右侧">"箭头，点击设置，在ip4中填写dns
 sudo /etc/init.d/networking restart
 ------------------修改源------------------------
+sudo vim /etc/apt/sources.list
+
 deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
