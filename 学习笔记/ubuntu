@@ -28,6 +28,12 @@ sudo apt-get clean
 sudo apt-get update 更新源  
 sudo apt-get upgrade 更新软件
 
+------------------安装搜狗输入法------------------------
+下载linux搜狗输入法安装包
+sudo dpkg -i sogoupinyin_2.2.0.0102_amd64.deb
+若缺少依赖包，执行:sudo apt-get install -f
+
+
 4.常见问题
 dpkg安装软件出错：
 出现   dpkg: 处理软件包 gir1.2-unity-5.0:amd64 (--configure)时出错：   字样
