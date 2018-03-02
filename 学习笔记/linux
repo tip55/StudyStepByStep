@@ -18,5 +18,14 @@ sed [-nefri] 'command' 输入文本
  [root@localhost ruby] # sed -n '2,$p' ab        #显示第二行到最后一行
  [root@localhost ruby] # sed -n '/ruby/p' ab    #查询包括关键字ruby所在所有行，  /正则/    
  [root@localhost ruby] # sed -n '/\$/p' ab        #查询包括关键字$所在所有行，使用反斜线\屏蔽特殊含义
+ 2.搜索查找
+ 在指定文件中搜索内容：grep -n 'qucard' catalina.2017-10-16.out
+ 在指定目录下搜索文件：find /usr/ -name xxx
  
- grep -n 'qucard' catalina.2017-10-16.out
+ 3.tail
+ 参数：
+ -f 该参数用于监视File文件增长;
+ -n 100 从尾部向上100行位置开始读取;
+ -n -100 从100行位置读取指定文件;
+  
+ 
