@@ -27,5 +27,5 @@ sed [-nefri] 'command' 输入文本
  -f 该参数用于监视File文件增长;
  -n 100 从尾部向上100行位置开始读取;
  -n -100 从100行位置读取指定文件;
-  
- 
+  eg:
+  tail -f -n 500 catalina.2018-03-02.out | grep -n 'ERROR'
