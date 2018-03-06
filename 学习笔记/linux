@@ -31,3 +31,6 @@ sed [-nefri] 'command' 输入文本
   tail -f -n 500 catalina.2018-03-02.out | grep -n 'ERROR'
   tail -f -n 50 catalina.2018-03-02.out | head -n 5    # 查看最后50行到最后55行
   head -n 20 catalina.2018-03-02.out | tail -n 10   # 查看第10到20行
+
+
+ 寻找masterpid：pstree -ap | grep tomcat
