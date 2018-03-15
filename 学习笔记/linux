@@ -34,3 +34,4 @@ sed [-nefri] 'command' 输入文本
 
 
  寻找masterpid：pstree -ap | grep tomcat
+ 上传文件：scp /home/vector/下载/redis-4.0.6.tar.gz root@xxxx.xx.xx.xx:~/redis-4.0.6.tar.gz
