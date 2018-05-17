@@ -22,6 +22,7 @@ $ git checkout xxx    切换分支
 $ git checkout -b xxx    创建新分支并立即切换到新分支
 $ git branch -d xxx    删除分支，-d选项无法删除仍有未合并内容的分支。若要强制删除一个分支，可以使用-D选项
 $ git merge xxx    合并分支，将名称为xxx的分支与当前分支合并
+$ git merge --no-ff xxx
 注：如果想要合并分支，那么要合并的分支必须比当前分支的版本先进
 $ git push origin :heads/xxx    删除远程分支
 $ git push origin master    将本地所在分支内容推送到远程master分支上，若远程master分支不存在，则会新建远程master分支；
