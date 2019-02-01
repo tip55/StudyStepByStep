@@ -2,12 +2,6 @@
 http://codingpy.com/article/build-a-simple-web-server-part-one/
 一起来写个简单的解释器：
 http://blog.jobbole.com/88152/
-Django：
-http://zmrenwu.com/post/3/
-Python小程序：
-http://wxpy.readthedocs.io/zh/latest/index.html
-+
-https://github.com/biezhi/wechat-robot
 
 2.概念
 a.实例变量data
@@ -154,4 +148,41 @@ def fn(*args, **kwargs):
     ... ...
 
 
+	
+	
+1. Ubuntu安装 MySQL, Redis, Python3
+# 安装 redis
+apt-get install redis-server
 
+# 后台启动 redis-server
+nohup redis-server &
+
+# 安装 python3
+apt-get install python3
+
+# 安装 MySQL
+apt-get install mysql-server
+
+# 启动 MySQL
+sudo service mysql start
+
+2. 在项目根目录下构建
+make
+# 构建成功后项目的 env/bin 目录下会有可执行脚本
+
+3. 执行单元测试
+make test
+
+4. 代码风格检查
+make flake8
+
+5. env/bin 目录下其他可执行脚本
+# 直接爬取职位数量
+env/bin/crawl_lagou_jobs_count
+# 直接爬取职位数据
+env/bin/crawl_lagou_data
+# 启动celery监控 
+env/bin/celery_flower            
+
+6. 清除构建信息
+make clean
