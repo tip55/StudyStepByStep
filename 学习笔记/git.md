@@ -1,4 +1,4 @@
-## 
+## 概念
 * Feature分支表示开发分支
 * origin代表远程仓库，比如，origin/master或origin:master表示远程master分支
 * GIT操作都是修改本地仓库，再同步到远程仓库
