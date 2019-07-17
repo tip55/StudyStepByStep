@@ -16,6 +16,15 @@ $ ssh-keygen -t rsa -C "xxx@gmail.com"
 
 ## 创建版本库
 
+## 基本操作
+```bash
+
+$ git add ./
+$ git commit -m "xxx"
+$ git push origin master
+$ git status
+
+```
 
 ## 分支(Branch)管理
 ```bash
