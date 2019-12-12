@@ -127,10 +127,9 @@ $ git log --pretty=oneline
 
 # 强制覆盖远程分支
 $ git push -f origin master
-```
+
 
 用reset代码版本回退后怎么还原？
-```bash
 # 查看提交记录ID
 $ git reflog
  dae675a HEAD@{0}: reset: moving to HEAD^  
