@@ -102,7 +102,7 @@ $ git diff branch1 branch2 file
 ```
 
 ## 还原
-* 版本回退进行还原
+* 版本回退进行还原（版本指针后移）
 ```bash
 # 查看历史提交版本记录，--pretty=oneline参数屏蔽不必要信息
 $ git log --pretty=oneline
@@ -129,7 +129,7 @@ $ git log --pretty=oneline
 $ git push -f origin master
 ```
 
-* 代码回退后怎么还原
+用reset代码版本回退后怎么还原？
 ```bash
 # 查看提交记录ID
 $ git reflog
@@ -147,19 +147,29 @@ $ git push -f origin master
 $ git reflog | grep merge
 ```
 
-* 非版本回退进行还原
+* 非版本回退进行还原（通过反做创建一个新的版本将要还原的内容还原，新的版本提交，推荐使用）
 ```bash
 $ git log --pretty=oneline
- 50bd7fa1de128b29eeef55be1a086c5550bfcd14 111111111111111
- 30bd7fa1de128b29eeef55be1a086c5550bfcd14 222222222222222
- 20bd7fa1de128b29eeef55be1a086c5550bfcd14 333333333333333
- 10bd7fa1de128b29eeef55be1a086c5550bfcd14 444444444444444
+ 70c943a0df1ffb1aa957bbc38a11fd5a00a3ef30 111111111111111
+ dc641f126c92dd22b9706e0693bb5787c7179700 222222222222222
+ d85f3b5abdd40be8f68748854e1a484dc4686072 333333333333333
+ 55a49d55f921a9658ded2135fbe9b45ec9642b88 444444444444444
+ a4e1a2176b7b5a91400cdf7c0e34c2d5931be819 555555555555555
+ :
+ 
  ... ...
-
-$ git revert xxxx33
+还原上个版本"111111111111111"的内容：
+$ git revert 70c943a0df1ffb1aa957bbc38a11fd5a00a3ef30
 # 出现vim的编辑状态，主要是为本次提交添加注释，操作和vim一样，:wq保存退出
-$ git push origin master
 
+还原多个版本，可能在中间怎么办？
+$ git revert OLDER_COMMIT^..NEWER_COMMIT
+比如还原444444444444444~dc641f126c92dd22b9706e0693bb5787c7179700版本的内容，包含前后：
+$ git revert 55a49d55f921a9658ded2135fbe9b45ec9642b88^..dc641f126c92dd22b9706e0693bb5787c7179700
+
+
+最后推上远程即可
+$ git push origin master
 ```
 
 * reset和revert区别
