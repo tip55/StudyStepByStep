@@ -46,6 +46,11 @@ $ git checkout xxx
 # 创建本地分支并切换到新分支
 $ git checkout -b xxx
 
+# 关联本地分支和远程分支
+$ git branch --set-upstream-to=origin/remote_branch  your_branch
+# 将本地当前的新分支推送到远程仓库并进行关联
+$ git push --set-upstream origin newbranch
+
 # 检出远程的dev分支，在本地创建dev分支，并切换到本地的dev分支
 $ git checkout -b dev origin/dev
 
