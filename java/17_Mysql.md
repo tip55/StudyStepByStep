@@ -299,7 +299,27 @@ d. MySQL服务关闭时。
 # SQL优化
 * 慢日志
 ```
+开启：
 
+Explain重要字段：
+a. id
+表示SELECT语句的序列号，它是SQL执行顺利的标识。
+
+b. select_type
+表示查询的类型，主要用于区别普通查询、联合查询或子查询等复杂查询。
+
+c. table
+d. partitions
+e. type
+f. possible_keys
+g. key
+h. key_len
+i. ref
+j. rows
+k. filtered
+l. Extra
+它显示了重要的额外信息。
+Using filesort
 ```
 * or
 ```

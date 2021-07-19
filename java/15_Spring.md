@@ -7,14 +7,37 @@ ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
 Person person = context.getBean("person", Person.class);
 
 过程：
-refresh();
+a. 解析Bean配置或注解
+重要核心类 - BeanDefintaion
+通过扫描指定包路径下的Bean注解或者解析XML配置，将一个Bean的属性封装成为一个BeanDefintaion对象。
+每个Bean都对应一个BeanDefintaion对象，其包含对应Bean的className、scope、lazy等属性。
 
+Spring IOC容器最终会维护一个名为beanDefinitionMap的ConcurrentHashMap结构，保存所有的BeanDefintaion实例。
 
-BeanPostProcessor
+b. Bean 的实例化
+重要核心类 - BeanPostProcessor
+通过反射机制创建Bean的实例对象，之后会触发BeanPostProcessor#postProcessBeforeInstantiation动作。
+在该阶段我们可以自定义逻辑，如返回一个代理对象等。
+
+c. Bean 的初始化
+重要核心类 - BeanPostProcessor
+给Bean对象的依赖属性进行填充注入，以及
+
+d. Bean 的使用
+
+e. Bean 的销毁
+重要核心类 - DisposableBean
+
 ```
 * SpringBoot启动过程
 ```
 
+```
+
+* AOP
+```
+gclib不需要接口
+jdk需要接口
 ```
 
 * 注解事务

@@ -1,3 +1,20 @@
+# JVM
+* 线程栈
+```
+包含程序计数器，
+```
+
+
+# 垃圾回收器
+* CMS
+它是老年代垃圾收集器，
+
+* G1
+  https://www.itqiankun.com/article/jvm-g1-memory-management-model
+
+
+
+
 # JVM常见参数
 * 堆参数
 ```
